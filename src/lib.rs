@@ -53,5 +53,3 @@ mod tests {
         assert_eq!(contract.get_greeting(), "howdy");
     }
 }
-
-near account create-account sponsor-by-faucet-service waterreptile19.testnet autogenerate-new-keypair save-to-keychain network-config testnet create
