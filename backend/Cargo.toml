@@ -1,0 +1,70 @@
+[package]
+name = "backend"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+# Serialization/Deserialization
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Error handling
+anyhow = "1.0"
+thiserror = "1.0"
+
+# Asynchronous programming
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
+# HTTP client
+reqwest = { version = "0.11", features = ["json"] }
+
+# Command-line argument parsing
+clap = { version = "4.3", features = ["derive"] }
+
+# Logging
+log = "0.4"
+env_logger = "0.10"
+
+# Date and time
+chrono = "0.4"
+
+# Random number generation
+rand = "0.8"
+
+# Regular expressions
+regex = "1.9"
+
+# cryptography
+# Ad-hoc fix for compilation errors (rustls is used instead of openssl to ease the deployment avoiding the system dependency on openssl)
+openssl = { version = "0.10", features = ["vendored"] }
+
+bip39 = { version = "2.0.0", features = ["rand"] }
+bs58 = "0.5"
+ed25519-dalek = { version = "2", default-features = false }
+hex = "0.4.2"
+linked-hash-map = { version = "0.5", features = ["serde_impl"] }
+
+near = { git = "https://github.com/near/near-api-rs.git", version = "0.1.0" }
+
+# Near libraries
+near-crypto = "0.26"
+near-primitives = "0.26"
+near-jsonrpc-client = "0.13"
+near-jsonrpc-primitives = "0.26"
+near-socialdb-client = "0.7"
+
+near-ledger = { version = "0.8.0", optional = true }
+
+near-gas = { version = "0.3", features = [
+    "serde",
+    "borsh",
+    "interactive-clap",
+] }
+near-token = { version = "0.3", features = [
+    "serde",
+    "borsh",
+    "interactive-clap",
+] }
+
+near-abi = "0.4.2"
