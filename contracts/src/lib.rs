@@ -3,31 +3,31 @@ use near_sdk::{log, near};
 
 // Define the contract structure
 #[near(contract_state)]
-pub struct Contract {
-    greeting: String,
-}
-
-// Define the default, which automatically initializes the contract
-impl Default for Contract {
-    fn default() -> Self {
-        Self {
-            greeting: "Hello".to_string(),
-        }
-    }
+#[derive(Default)]
+pub struct Counter {
+    val: i8,
 }
 
 // Implement the contract structure
 #[near]
-impl Contract {
-    // Public method - returns the greeting saved, defaulting to DEFAULT_GREETING
-    pub fn get_greeting(&self) -> String {
-        self.greeting.clone()
+impl Counter {
+    pub fn get_num(&self) -> i8 {
+        return self.val;
     }
 
-    // Public method - accepts a greeting, such as "howdy", and records it
-    pub fn set_greeting(&mut self, greeting: String) {
-        log!("Saving greeting: {greeting}");
-        self.greeting = greeting;
+    pub fn increment(&mut self) {
+        self.val += 1;
+        log!("Increased number to {}", self.val);
+    }
+
+    pub fn decrement(&mut self) {
+        self.val += -1;
+        log!("Decreased number to {}", self.val);
+    }
+
+    pub fn reset(&mut self) {
+        self.val = 0;
+        log!("Reset number to {}", self.val);
     }
 }
 
@@ -40,16 +40,30 @@ mod tests {
     use super::*;
 
     #[test]
-    fn get_default_greeting() {
-        let contract = Contract::default();
+    fn get_num() {
+        let contract = Counter::default();
         // this test did not call set_greeting so should return the default "Hello" greeting
-        assert_eq!(contract.get_greeting(), "Hello");
+        assert_eq!(contract.get_num(), 0);
     }
 
     #[test]
-    fn set_then_get_greeting() {
-        let mut contract = Contract::default();
-        contract.set_greeting("howdy".to_string());
-        assert_eq!(contract.get_greeting(), "howdy");
+    fn incr_counter() {
+        let mut contract = Counter::default();
+        contract.increment();
+        assert_eq!(contract.get_num(), 1);
+    }
+
+    #[test]
+    fn decr_counter() {
+        let mut contract = Counter::default();
+        contract.decrement();
+        assert_eq!(contract.get_num(), -1); 
+    }
+
+    #[test]
+    fn reset_counter() {
+        let mut contract = Counter::default();
+        contract.reset();
+        assert_eq!(contract.get_num(), 0); 
     }
 }
