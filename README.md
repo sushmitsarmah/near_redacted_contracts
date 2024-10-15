@@ -2,6 +2,8 @@
 
 Moraq Leagues Near Edition is a project that combines AI agents, blockchain technology, and a crypto price betting platform. It leverages the NEAR blockchain for smart contract functionality and uses AI agents to enhance the overall experience.
 
+Visit our website: [Moraq Near Redacted](https://moraqnearredacted.vercel.app/)
+
 ## Project Structure
 
 The project is divided into three main components:
