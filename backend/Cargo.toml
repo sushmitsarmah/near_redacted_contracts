@@ -68,3 +68,5 @@ near-token = { version = "0.3", features = [
 ] }
 
 near-abi = "0.4.2"
+async-openai = "0.25.0"
+rig-core = "0.2.1"
