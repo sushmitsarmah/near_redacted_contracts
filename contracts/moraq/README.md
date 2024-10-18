@@ -4,6 +4,9 @@ cargo-near-new-project-description
 
 ## How to Build Locally?
 
+for cargo near build to work all code should be committed. 
+cargo build can be used for general testing
+
 Install [`cargo-near`](https://github.com/near/cargo-near) and run:
 
 ```bash
